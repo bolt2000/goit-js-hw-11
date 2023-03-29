@@ -21,7 +21,7 @@ const newsApiService = new NewsApiService();
 // console.log(newsApiService);
 
 refs.searchForm.addEventListener('submit', onSearch);
-refs.loadBtn.addEventListener('click', onLoadMore);
+refs.loadBtn.addEventListener('click', creatImageCards);
 
 // async function pixabayAPI(search, page) {
 //     const response = await axios.get(`${BASE_URL}?key=${KEY_API}&q=${search}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=40`);
@@ -34,7 +34,12 @@ function onSearch(e) {
 
    newsApiService.searchQuery = e.currentTarget.elements.searchQuery.value;
    newsApiService.resetPage();
-   newsApiService.fetchArticles().then(creatImageCards);
+   // newsApiService.fetchArticles().then(creatImageCards);
+newsApiService.fetchArticles().then(creatImageCards);
+
+
+
+
 
  }
 
