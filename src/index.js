@@ -4,10 +4,8 @@
 // import axios from 'axios';
 
 import NewsApiService from "./js/api-service";
+import hitsTpl from "./templates/hits.hbs";
 // import NewApiService from "./js/load-more";
-
-// const inputEl = document.querySelector("input");
-// let page = 1
 
 // btnLoadMore.setAttribute("hidden", true)
 
@@ -36,46 +34,51 @@ function onSearch(e) {
 
    newsApiService.searchQuery = e.currentTarget.elements.searchQuery.value;
    newsApiService.resetPage();
-   newsApiService.fetchArticles();
+   newsApiService.fetchArticles().then(creatImageCards);
 
  }
 
 function onLoadMore() {
-   newsApiService.fetchArticles();
+   // newsApiService.fetchArticles().then(hits => console.log(hits));
+   newsApiService.fetchArticles().then(creatImageCards);
 }
 
 
 
 
 
+function creatImageCards(hits) {
+   refs.gallery.insertAdjacentHTML('beforeend', hitsTpl(hits))
+}
 
-
-// function createMarkup(arr) {
-//     return arr.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => 
-//        `<div class="photo-card">
-//         <div class="wrap">
-        
-//        <a class="link" href="${largeImageURL}">
-//   <img class="img-item" src="${webformatURL}" alt="${tags}" loading="lazy" />
-//   </a>
-//   </div>
-//   <div class="info">
-//     <p class="info-item">
-//       <b>Likes</b>${likes}  
-//     </p>
-//     <p class="info-item">
-//       <b>Views</b>${views}
+// function creatImageCards(data) {
+//     const markup = data
+//         .map(
+//             ({
+//                 webformatURL,
+//                 largeImageURL,
+//                 tags,
+//                 likes,
+//                 views,
+//                 comments,
+//                 downloads,
+//             }) => {
+//                 return `<div class="card">
+//                 <a href="${largeImageURL}"> <img src="${webformatURL}" alt="${tags}" loading="lazy" title=""/></a>
+//                 <div class="info">
+//                 <p class="item-info">
+//                 <b>Likes</b>${likes}</p>
+//                 <p class="item-info">
+//                 <b>Views</b>${views}</p>
+//                 <p class="item-info">
+//                 <b>Comments</b>${comments}</p>
+//                 <p class="item-info">
+//                 <b>Downloads</b>${downloads}</p>
+//                 </div>
+//                 </div>`
+//             })
+//         .join('');
     
-//     </p>
-//     <p class="info-item">
-//       <b>Comments</b>${comments}
-//     </p>
-//     <p class="info-item">
-//       <b>Downloads</b>${downloads}  
-//     </p>
-//   </div>
-// </div>`).join("")
-        
-// }
-
+//     gallery.insertAdjacentHTML('beforeend', markup);
+// };
  

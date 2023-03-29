@@ -13,12 +13,13 @@ export default class NewsApiService {
         // const KEY_API = "20083016-0123a23ef68f74321fe951c35"
         const url = `${BASE_URL}?key=${this.api}&q=${this.query}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=4`;
 
-        fetch(url)
+        return fetch(url)
             .then(r => r.json())
             .then(data => {
                 console.log(data);
                 this.incrementPage();
-                console.log('ПОСЛЕ', this);
+                return data.hits;
+                // console.log('ПОСЛЕ', this);
             });
     }
 

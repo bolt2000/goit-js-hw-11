@@ -1,12 +1,12 @@
 import simpleLightbox from "simplelightbox";
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-export default class Markup {
-  constructor({ selector }) {
-    this.items = null;
-    this.selector = selector;
-    this.ligthbox = null;
-  }
+// export default class Markup {
+//   constructor({ selector }) {
+//     this.items = null;
+//     this.selector = selector;
+//     this.ligthbox = null;
+//   }
 
   render() {
     const gallery = this.items
@@ -49,4 +49,3 @@ export default class Markup {
   reset() {
     this.selector.innerHTML = '';
   }
-}
