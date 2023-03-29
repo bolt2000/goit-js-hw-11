@@ -41,7 +41,7 @@ function onSearch(e) {
 
   const search = e.currentTarget.elements.searchQuery.value;
   newsApiService.fetchArticles(search);
-}
+ }
 
 function onLoadMore() {
    newsApiService.fetchArticles(search);
