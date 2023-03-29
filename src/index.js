@@ -34,7 +34,7 @@ refs.loadBtn.addEventListener('click', onLoadMore);
 function onSearch(e) {
   e.preventDefault();
 
-  newsApiService.query = e.currentTarget.elements.searchQuery.value;
+  newsApiService.searchQuery = e.currentTarget.elements.searchQuery.value;
   newsApiService.fetchArticles();
 
  }

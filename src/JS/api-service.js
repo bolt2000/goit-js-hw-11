@@ -1,32 +1,34 @@
 export default class NewsApiService {
     constructor() {
-        this.searchQuery = '';
+        this.query = '';
         this.page = 1;
+        this.api = '20083016-0123a23ef68f74321fe951c35';
     }
 
     
     fetchArticles() {
-        console.log(this);
-        const BASE_URL = "https://pixabay.com/api/"
-        const KEY_API = "20083016-0123a23ef68f74321fe951c35"
-        const url = `${BASE_URL}?key=${KEY_API}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=4`;
+        console.log('ДО', this);
 
-        fetch(url,)
+        const BASE_URL = "https://pixabay.com/api/"
+        // const KEY_API = "20083016-0123a23ef68f74321fe951c35"
+        const url = `${BASE_URL}?key=${this.api}&q=${this.query}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=8`;
+
+        fetch(url)
             .then(r => r.json())
-            // .then(console.log)
             .then(data => {
-                  this.page += 1;
+                this.page += 1;
+                console.log('ПОСЛЕ', this);
             });
     }
 
 
 
-    get query() {
-        return this.searchQuery;
+    get searchQuery() {
+        return this.query;
 }
 
-    set query(newQuery) {
-        this.searchQuery = newQuery;
+    set searchQuery(newQuery) {
+        this.query = newQuery;
     }
     
 }
