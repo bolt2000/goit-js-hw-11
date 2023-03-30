@@ -42,7 +42,7 @@ button {
 
 .block {
   display: block;
-  width: 90%;
+  width: 100%;
   border: none;
   background-color: #04AA6D;
   padding: 14px 28px;
@@ -84,7 +84,7 @@ img {
 .gallery {
   display: flex;
   flex-wrap: wrap;
-  margin: 2vw;
+  margin: auto;
 }
 
 .photo-card {
@@ -165,7 +165,8 @@ img {
   .gallery {
     display: flex;
     flex-wrap: wrap;
-    margin: 1.8vw;
+    margin: auto;
+    margin-left: 2%;
   }
 
   .photo-card {

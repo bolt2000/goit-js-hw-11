@@ -10,7 +10,7 @@ export default class NewsApiService {
     fetchArticles() {
         // console.log('ДО', this);
         const BASE_URL = "https://pixabay.com/api/"
-        const url = `${BASE_URL}?key=${this.api}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=8`;
+        const url = `${BASE_URL}?key=${this.api}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=40`;
 
         return fetch(url)
             .then(response => response.json())

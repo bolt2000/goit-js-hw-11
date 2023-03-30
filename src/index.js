@@ -45,7 +45,7 @@ function onSearch(e) {
     else {
       creatImageCards(data);
       refs.loadBtn.classList.remove('is-hidden');
-      Notiflix.Notify.success(`We have found  ${data.total} images!`);
+      Notiflix.Notify.success(`We have found  ${newsApiService.query} images!`);
       lightbox.refresh();
     };
   
