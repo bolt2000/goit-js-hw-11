@@ -21,6 +21,7 @@ export default class NewsApiService {
                 return hits;
             });
 
+        
 
     //     return fetch(url)
     //         .then(response => response.json())
