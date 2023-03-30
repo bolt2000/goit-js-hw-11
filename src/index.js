@@ -73,7 +73,7 @@ function getGallery(data) {
                 comments,
                 downloads,
             }) => {
-                return `<div class="card">
+                return `<div class="photo-card">
                 <a href="${largeImageURL}"> <img src="${webformatURL}" alt="${tags}" loading="lazy" title=""/></a>
                 <div class="info">
                 <p class="item-info">
