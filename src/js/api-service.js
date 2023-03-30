@@ -2,6 +2,7 @@ export default class NewsApiService {
     constructor() {
         this.searchQuery = '';
         this.page = 1;
+        this.perPage = 40;
         this.api = '20083016-0123a23ef68f74321fe951c35';
 
     }
@@ -10,7 +11,7 @@ export default class NewsApiService {
     fetchArticles() {
         // console.log('ДО', this);
         const BASE_URL = "https://pixabay.com/api/"
-        const url = `${BASE_URL}?key=${this.api}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=40`;
+        const url = `${BASE_URL}?key=${this.api}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=${this.perPage}`;
 
         return fetch(url)
             .then(response => response.json())

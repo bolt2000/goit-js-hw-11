@@ -1,11 +1,9 @@
 import Notiflix from 'notiflix';
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
-// import axios from 'axios';
+import axios from 'axios';
 import NewsApiService from "./js/api-service";
-// import Handlebars from 'handlebars/runtime';
 import hitsTpl from "./templates/hits.hbs";
-// import Handlebars from 'handlebars/runtime';
 
 const refs = {
 searchForm: document.querySelector(".search-form"),
@@ -50,7 +48,6 @@ function onSearch(e) {
     };
   
   });
-  // newsApiService.fetchArticles().then(creatImageCards);
  }
 
 function onLoadMore() {
@@ -58,7 +55,7 @@ function onLoadMore() {
   newsApiService.fetchArticles().then(data => {
   creatImageCards(data);
   refs.loadBtn.classList.remove('is-hidden');
-  // lightbox.refresh();
+  lightbox.refresh();
   });
 }
 
