@@ -1,3 +1,7 @@
+
+import axios from 'axios';
+
+
 export default class NewsApiService {
     constructor() {
         this.searchQuery = '';
@@ -8,47 +12,56 @@ export default class NewsApiService {
     }
 
     
-    fetchArticles() {
+    async fetchArticles() {
         // console.log('ДО', this);
         const BASE_URL = "https://pixabay.com/api/"
-        const url = `${BASE_URL}?key=${this.api}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=${this.perPage}`;
+        // const url = `${BASE_URL}?key=${this.api}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=${this.perPage}`;
 
-        return fetch(url)
-            .then(response => response.json())
-            .then(({ hits }) => {
-                (console.log);
-                console.log(hits);
-                this.incrementPage();
-                return hits;
-            });
+        try {
+    
+            const response = await axios(`${BASE_URL}?key=${this.api}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=${this.perPage}`)
 
+            const data = response.data;
+        
+this.incrementPage();
+console.log(response.data);
 
-    //     return fetch(url)
-    //         .then(response => response.json())
-    //         .then(console.log);
+            return data;
+                // .then(response => response.json())
+                // .then(({ hits }) => {
+                //     (console.log);
+                //     console.log(hits);
+                //     this.incrementPage();
+                //     return hits;
+                // });
+  } catch (error) {
+      console.error(error);
     }
+        }
+
+        
 
 
 
     incrementPage() {
-        this.page += 1;
-    }
+            this.page += 1;
+        }
 
 
-    resetPage() {
-        this.page = 1;
-    }
+        resetPage() {
+            this.page = 1;
+        }
 
     get query() {
-        return this.searchQuery;
-}
+            return this.searchQuery;
+        }
 
     set query(newQuery) {
-        this.searchQuery = newQuery;
-    }
+            this.searchQuery = newQuery;
+        }
 
     catch (error) {
-        console.error(error);
-    }
+            console.error(error);
+        }
     
-}
+    }

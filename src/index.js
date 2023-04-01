@@ -26,6 +26,9 @@ refs.loadBtn.addEventListener('click', onLoadMore);
 function onSearch(e) {
   e.preventDefault();
 
+  clearImageCards();
+
+
   newsApiService.query = e.currentTarget.elements.searchQuery.value;
   newsApiService.resetPage(); 
 
@@ -33,17 +36,17 @@ function onSearch(e) {
     return Notiflix.Notify.info('Sorry, we have not found any images matching your query... Please try again.');
   } 
 
-  clearImageCards();
+  
   
   newsApiService.fetchArticles().then(data => {
-    if (data.length < 1) {
+    if (!data.hits.length) {
       refs.loadBtn.classList.add('is-hidden');
       Notiflix.Notify.failure('Error, not found any images matching your query.');
     }
     else {
-      creatImageCards(data);
+      creatImageCards(data.hits);
       refs.loadBtn.classList.remove('is-hidden');
-      Notiflix.Notify.success(`We have found  ${newsApiService.query} images!`);
+      Notiflix.Notify.success(`We have found  ${data.total} images!`);
       lightbox.refresh();
     };
   
@@ -53,7 +56,7 @@ function onSearch(e) {
 function onLoadMore() {
   refs.loadBtn.classList.add('is-hidden');
   newsApiService.fetchArticles().then(data => {
-  creatImageCards(data);
+  creatImageCards(data.hits);
   refs.loadBtn.classList.remove('is-hidden');
   lightbox.refresh();
   });
